@@ -1,0 +1,3 @@
+== Weather coding project
+
+This is a coding project written by Brent Haas
