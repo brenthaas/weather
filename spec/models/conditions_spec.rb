@@ -1,4 +1,4 @@
-require 'spec helper'
+require 'spec_helper'
 
 describe Conditions do
 	it { should respond_to :location }

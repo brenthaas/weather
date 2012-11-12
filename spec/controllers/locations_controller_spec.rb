@@ -81,7 +81,7 @@ describe LocationsController do
 
       it "redirects to the created location" do
         post :create, {:location => valid_attributes}, valid_session
-        response.should redirect_to(Location.last)
+        response.should redirect_to(locations_url)
       end
     end
 

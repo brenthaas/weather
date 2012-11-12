@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110092739) do
+ActiveRecord::Schema.define(:version => 20121112071527) do
+
+  create_table "conditions", :force => true do |t|
+    t.integer  "location_id"
+    t.decimal  "temp",           :precision => 1, :scale => 0
+    t.string   "wind_direction"
+    t.integer  "wind_speed"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "conditions", ["created_at"], :name => "index_conditions_on_created_at"
+  add_index "conditions", ["location_id"], :name => "index_conditions_on_location_id"
 
   create_table "locations", :force => true do |t|
     t.string   "name"
