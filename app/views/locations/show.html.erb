@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <b>Name:</b>
+  <%= @location.name %>
+  <div class="change_links">
+    <%= link_to 'Edit', edit_location_path(@location) %>
+    <%= link_to 'Remove', @location, confirm: 'Are you sure?', method: :delete %>
+  </div>
+</div>
+<%= link_to 'Back', locations_path %>
