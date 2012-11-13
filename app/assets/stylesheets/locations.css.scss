@@ -7,3 +7,22 @@
 		font-size: 16px;
 	}
 }
+
+.field {
+	dt { 
+		float: left; 
+		clear: left;
+		width: 100px;
+		text-align: right;
+	}
+	dd { 
+		float: left; 
+		margin-left: 10px;
+		input[type='text'] { width: 80px; }
+	}
+}	
+
+.actions { 
+	margin-top: 15px;
+	clear: both;
+}
