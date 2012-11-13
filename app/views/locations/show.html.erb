@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<div>
-  <b>Name:</b>
-  <%= @location.name %>
-  <div class="change_links">
-    <%= link_to 'Edit', edit_location_path(@location) %>
-    <%= link_to 'Remove', @location, confirm: 'Are you sure?', method: :delete %>
-  </div>
+<div class="location-info">
+  <h1 class="heading">Current weather for <%= @location.name %> </h1>
+  <% if @conditions %>
+	  <p class="condition" id="temp">Temperature: <%= @conditions.temp %></p>
+	  <p class="condition" id="wind-speed">Wind Speed: <%= @conditions.wind_speed %></p>
+	  <p class="condition" id="wind-dir">Wind Direction: <%= @conditions.wind_direction %></p>
+	  <p class="condition" id="timestamp">Report Time: <%= l @conditions.created_at, :format => :short %></p>
+	<% else %>
+	 	<p class="condition">No weather information available</p>
+	<% end %>
 </div>
 <%= link_to 'Back', locations_path %>

@@ -1,0 +1,4 @@
+  <span class="change_links">
+    <%= link_to 'Edit', edit_location_path(@location) %> | 
+    <%= link_to "Remove #{@location.name}", @location, confirm: 'Are you sure?', method: :delete %>
+  </span>

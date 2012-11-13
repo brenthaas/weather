@@ -13,9 +13,19 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name %><br />
+    <%= f.fields_for(:current_conditions) do |builder| %>
+    <dl class="clearfix">
+      <dt><%= builder.label :temperature %></dt>
+      <dd><%= builder.text_field :temp %></dd>
+      <dt><%= builder.label :wind_direction %></dt>
+      <dd><%= builder.text_field :wind_direction %></dd>
+      <dt><%= builder.label :wind_speed %></dt>
+      <dd><%= builder.text_field :wind_speed %></dd>
+    </dl>
+    <% end %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Current Weather" %>
   </div>
 <% end %>
