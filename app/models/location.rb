@@ -1,6 +1,9 @@
 class Location < ActiveRecord::Base
   attr_accessible :name, :current_conditions
   has_many :conditions
+  validates :name, 
+  						presence: true, 
+  						format: { with: /\w+/ }
 
   def current_conditions
   	conditions.last
@@ -12,7 +15,4 @@ class Location < ActiveRecord::Base
   		:wind_speed => conds[:wind_speed] )
   end
 
-  def conditions_history(count=10)
-  	conditions.last(count)
-  end
 end
