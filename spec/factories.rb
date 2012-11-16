@@ -9,17 +9,17 @@ FactoryGirl.define do
 
 	factory :location do
 		sequence(:name) { |num| "Test Location #{num}"}
+	end
 
-		factory :location_with_conditions do
-			ignore do
-				conditions_count 15
-			end
+	trait :with_conditions do
+		ignore do
+			conditions_count 15
+		end
 
-			after(:create) do |location, evaluator|
-				FactoryGirl.create_list(:conditions, 
-					evaluator.conditions_count, 
-					:location => location)
-			end
+		after(:create) do |location, evaluator|
+			FactoryGirl.create_list(:conditions, 
+				evaluator.conditions_count, 
+				:location => location)
 		end
 	end
 end
