@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<div class="location-info">
+  <h1 class="heading">History of weather for <%= @location.name %> </h1>
+  <% if @conditions_list %>
+  	<table id="conditions-list">
+  		<tr>
+  			<th>Temp</th><th>Wind Speed</th><th>Wind Direction</th><th>Time</th>
+  		</tr>
+      <% @conditions_list.each do |conditions| %>
+        <tr class="conditions" data-time='<%= conditions.timestamp %>'> 
+          <%= render conditions %> 
+        </tr>
+      <% end %>
+  	</table>
+	<% else %>
+	 	<p class="condition">No weather information available</p>
+	<% end %>
+</div>
+<%= link_to "Back to #{@location.name} details", location_path(@location) %>
