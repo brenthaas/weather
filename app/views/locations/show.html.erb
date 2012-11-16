@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <div class="location-info">
-  <h1 class="heading">Current weather for <%= @location.name %> </h1>
+  <h1 class="heading">Current weather for 
+  	<span id="location" data-id="<%= @location.id %>"><%= @location.name %></span> </h1>
+  <div id="conditions">
   <% if @conditions %>
-	  <p class="condition" id="temp">Temperature: <%= @conditions.temp %></p>
-	  <p class="condition" id="wind-speed">Wind Speed: <%= @conditions.wind_speed %></p>
-	  <p class="condition" id="wind-dir">Wind Direction: <%= @conditions.wind_direction %></p>
-	  <p class="condition" id="timestamp">Report Time: <%= l @conditions.created_at, :format => :short %></p>
+	  <p class="condition" id="temp">Temperature: 
+	  	<span id="temp"><%= @conditions.temp %></span></p>
+	  <p class="condition" id="wind-speed">Wind Speed: 
+	  	<span id="wind-speed"><%= @conditions.wind_speed %></span> mph</p>
+	  <p class="condition" id="wind-dir">Wind Direction: 
+	  	<span id="wind-direction"><%= @conditions.wind_direction %></span></p>
+	  <p class="condition" id="time">Report Time: 
+	  	<span id="time" data-time="<%= @conditions.timestamp %>"><%= @conditions.formatted_time %></span></p>
 	<% else %>
 	 	<p class="condition">No weather information available</p>
 	<% end %>
+	</div>
 </div>
-<%= link_to 'Back', locations_path %>
+<%= link_to 'Back to locations', locations_path %>
+<% if @conditions %>
+	| <%= link_to 'Conditions History', location_history_path(@location) %>
+<% end %>
