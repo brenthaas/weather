@@ -24,7 +24,7 @@ describe LocationsController do
   # Location. As you add validations to Location, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    { :name => "Valid Location Name" }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -47,6 +47,15 @@ describe LocationsController do
       location = Location.create! valid_attributes
       get :show, {:id => location.to_param}, valid_session
       assigns(:location).should eq(location)
+    end
+  end
+
+  describe "GET history" do
+    it "assigns the recent conditions to @conditions_list" do
+      location = FactoryGirl.create(:location, :with_conditions)
+      conditions = location.conditions
+      get :history, {:id => location.to_param, :after => 0}, valid_session
+      assigns(:conditions_list).should eq(conditions)
     end
   end
 
