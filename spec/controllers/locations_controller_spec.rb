@@ -35,10 +35,17 @@ describe LocationsController do
   end
 
   describe "GET index" do
-    it "assigns all locations as @locations" do
+    it "assigns all locations as @locations in order" do
       location = Location.create! valid_attributes
       get :index, {}, valid_session
       assigns(:locations).should eq([location])
+    end
+    it "gives all locations in alphabetical order" do
+      second = FactoryGirl.create(:location, :name => "New York") 
+      third = FactoryGirl.create(:location, :name => "Zurich") 
+      first = FactoryGirl.create(:location, :name => "Boston") 
+      get :index, {}, valid_session
+      assigns(:locations).should eq([first, second, third])
     end
   end
 
