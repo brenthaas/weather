@@ -26,4 +26,27 @@ describe "Locations" do
   		body.should have_link("History", :href => location_history_path(location))
   	end
   end
+
+  describe "list" do
+    describe "shows all" do
+      before do
+        @location_count = 3
+        FactoryGirl.create_list(:location, @location_count, :with_conditions)
+        visit locations_path
+      end
+
+      it "locations" do
+        page.body.should have_css("td.location", :count => @location_count)
+      end
+      it "temperatures" do
+        page.body.should have_css("td.temp", :count => @location_count)
+      end
+      it "wind speeds" do
+        page.body.should have_css("td.wind-speed", :count => @location_count)
+      end
+      it "wind directions" do
+        page.body.should have_css("td.wind-direction", :count => @location_count)
+      end
+    end
+  end
 end
