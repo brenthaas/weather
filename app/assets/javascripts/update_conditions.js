@@ -20,7 +20,7 @@ function updateConditionsList() {
 				content += "<td class='condition wind-direction'>" + update.wind_direction + "</td>";
 				content += "<td class='condition time'>" + update.formatted_time + "</td>";
 				content += "</tr>";
-				$(content).appendTo('#conditions-list');
+				$(content).appendTo('#conditions-list').effect("highlight", {}, 2500);
 			});
 		}
 	})
