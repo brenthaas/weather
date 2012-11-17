@@ -1,9 +1,13 @@
-<h1>Locations</h1>
+<h1>Current weather conditions:</h1>
 
 <table id="location_list">
+	<tr>
+		<th>Location</th><th>Temp</th><th>Wind Speed</th><th>Wind Direction</th><th>Time</th>
+	</tr>
 <% @locations.each do |location| %>
-  <tr>
+	<tr class="location-conditions" data-id="<%= location.id %>">
     <td class="location"><%= link_to location.name, location %></td>
+    <%= render location.current_conditions if location.current_conditions %>
   </tr>
 <% end %>
 </table>
