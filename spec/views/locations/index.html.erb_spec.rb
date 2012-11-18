@@ -3,13 +3,8 @@ require 'spec_helper'
 describe "locations/index" do
   before(:each) do
     assign(:locations, [
-      stub_model(Location,
-        :name => "MyText"
-      ),
-      stub_model(Location,
-        :name => "MyText"
-      )
-    ])
+      FactoryGirl.create(:location, :with_conditions, :name =>"MyText"),
+      FactoryGirl.create(:location, :with_conditions, :name =>"MyText")])
   end
 
   it "renders a list of locations" do
