@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117095141) do
+ActiveRecord::Schema.define(:version => 20121118055614) do
 
   create_table "conditions", :force => true do |t|
     t.integer  "location_id"
-    t.decimal  "temp",           :precision => 1, :scale => 0
+    t.decimal  "temp",           :precision => 5, :scale => 1
     t.string   "wind_direction"
     t.integer  "wind_speed"
     t.datetime "created_at",                                   :null => false
