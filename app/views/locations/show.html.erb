@@ -1,22 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<div class="location-info">
+<div class="location-details">
   <h1 class="heading">Current weather for 
-  	<span id="location" data-id="<%= @location.id %>"><%= @location.name %></span> </h1>
-  <div id="conditions">
-  <% if @conditions %>
-	  <p class="condition" id="temp">Temperature: 
-	  	<span id="temp"><%= @conditions.temp %></span></p>
-	  <p class="condition" id="wind-speed">Wind Speed: 
-	  	<span id="wind-speed"><%= @conditions.wind_speed %></span> mph</p>
-	  <p class="condition" id="wind-dir">Wind Direction: 
-	  	<span id="wind-direction"><%= @conditions.wind_direction %></span></p>
-	  <p class="condition" id="time">Report Time: 
-	  	<span id="time" data-time="<%= @conditions.timestamp %>"><%= @conditions.formatted_time %></span></p>
+  	<span id="location"><%= @location.name %></span> </h1>
+  <% unless @conditions %>
+	<div id="no-info">No weather information available</p>
 	<% else %>
-	 	<p class="condition">No weather information available</p>
-	<% end %>
+  <div class="current-conditions" data-time="<%= @conditions.timestamp %>" data-id="<%= @location.id %>" >
+	  <p>Temperature: 
+	  	<span class="temp"><%= @conditions.temp %></span></p>
+	  <p>Wind Speed: 
+	  	<span class="wind-speed"><%= @conditions.wind_speed %></span> mph</p>
+	  <p>Wind Direction: 
+	  	<span class="wind-direction"><%= @conditions.wind_direction %></span></p>
+	  <p>Report Time: 
+	  	<span class="time"><%= @conditions.formatted_time %></span></p>
 	</div>
+	<% end %>
 </div>
 <%= link_to 'Back to locations', locations_path %>
 <% if @conditions %>
