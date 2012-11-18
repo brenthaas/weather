@@ -36,16 +36,16 @@ describe "Locations" do
       end
 
       it "locations" do
-        page.body.should have_css("td.location", :count => @location_count)
+        page.body.should have_css(".location", :count => @location_count)
       end
       it "temperatures" do
-        page.body.should have_css("td.temp", :count => @location_count)
+        page.body.should have_css(".temp", :count => @location_count)
       end
       it "wind speeds" do
-        page.body.should have_css("td.wind-speed", :count => @location_count)
+        page.body.should have_css(".wind-speed", :count => @location_count)
       end
       it "wind directions" do
-        page.body.should have_css("td.wind-direction", :count => @location_count)
+        page.body.should have_css(".wind-direction", :count => @location_count)
       end
     end
   end
