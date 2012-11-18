@@ -4,6 +4,7 @@ class Location < ActiveRecord::Base
   validates :name, 
   						presence: true, 
   						format: { with: /\w+/ }
+  default_scope order('name ASC')
 
   def current_conditions
   	conditions.last
@@ -14,5 +15,4 @@ class Location < ActiveRecord::Base
   		:wind_direction => conds[:wind_direction],
   		:wind_speed => conds[:wind_speed] )
   end
-
 end
