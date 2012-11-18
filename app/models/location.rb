@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
   default_scope order('name ASC')
 
   def current_conditions
-  	conditions.last
+  	conditions.order('created_at').last
   end
 
   def current_conditions=(conds)
