@@ -8,6 +8,10 @@ class Conditions < ActiveRecord::Base
   	:with => /^[NS]?[NSWE]?$/i,
   	:message => "Wind direction should consist of [NSWE]" }
 
+  def self.updated_since(timestamp)
+    self.where("created_at > ?", Time.at(timestamp))
+  end
+
   def wind_direction=(dir)
   	write_attribute :wind_direction, dir.upcase
   end
