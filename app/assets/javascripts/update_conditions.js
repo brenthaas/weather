@@ -91,7 +91,7 @@ function location_id_after(location_name){
 		//get the name of the location
 		var name = $(this).find(".location").text();
 		//if we found a location named after what we are looking for,
-		if(name > location_name){
+		if(name.toLowerCase() > location_name.toLowerCase()){
 			//set the found index
 			found_at = $(this).data("id");
 			//break from the loop
