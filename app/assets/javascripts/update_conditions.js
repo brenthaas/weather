@@ -16,8 +16,22 @@ function updateLocationList() {
 		$.each(conditions, function(index, update) {
 			$("#location-list").data("time", update.timestamp+1)
 			//If the location exists
-			if($(".current-conditions[data-id=" + update.location_id + "]")){
+			if($(".current-conditions[data-id=" + update.location_id + "]").length > 0){
 				updateConditions(update.location_id, update);
+			}
+			//New location to add
+			else {
+				content = "<tr class='current-conditions' data-id=" + update.location_id + " data-time=" + update.timestamp + ">";
+				content += "<td class='location'> <a href='/locations/" + update.location_id + "'>" + update.location.name + "</a></td>";
+				conditions_cells(update);
+				content += "</tr>";
+				var id_after = location_id_after(update.location.name);
+				if(id_after){
+					var element_after = $('.current-conditions[data-id=' + id_after + ']');
+					$(content).insertBefore(element_after).effect("highlight", {}, 2500);
+				}else{
+					$(content).appendTo('#location-list').effect("highlight", {}, 2500);
+				}
 			}
 		});
 	}
@@ -62,11 +76,29 @@ function updateConditionsHistory() {
 }
 
 function conditions_cells(conditions) {
-	content += "<td class='temp'>" + conditions.temp + "</td>";
-	content += "<td class='wind-speed'>" + conditions.wind_speed + " mph</td>";
-	content += "<td class='wind-direction'>" + conditions.wind_direction + "</td>";
-	content += "<td class='time'>" + conditions.formatted_time + "</td>";
-	return content;
+	var new_stuff = "<td class='temp'>" + conditions.temp + "</td>";
+	new_stuff += "<td class='wind-speed'>" + conditions.wind_speed + " mph</td>";
+	new_stuff += "<td class='wind-direction'>" + conditions.wind_direction + "</td>";
+	new_stuff += "<td class='time'>" + conditions.formatted_time + "</td>";
+	return new_stuff;
+}
+
+// returns the data-id of the field after the one to insert
+function location_id_after(location_name){
+	var found_at;
+	//go through each conditions row
+	$.each($(".current-conditions"), function(index, cond){
+		//get the name of the location
+		var name = $(this).find(".location").text();
+		//if we found a location named after what we are looking for,
+		if(name > location_name){
+			//set the found index
+			found_at = $(this).data("id");
+			//break from the loop
+			return false;
+		}
+	});
+	return found_at;
 }
 
 //makes AJAX call to given URL and runs callback on success
