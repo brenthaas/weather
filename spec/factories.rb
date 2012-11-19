@@ -1,10 +1,11 @@
 FactoryGirl.define do
-
 	factory :conditions do
 		location
 		temp 80
 		wind_speed 15
 		wind_direction 'SW'
+		sequence(:created_at) { |n| n.minutes.ago }
+		sequence(:updated_at) { |n| n.minutes.ago }
 	end
 
 	factory :location do
