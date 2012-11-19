@@ -1,19 +1,28 @@
 $(function() {
+	var update_function;
 	if ($("#conditions-list").length > 0) {
-		setTimeout(updateConditionsHistory, 5000);
+		update_function = updateConditionsHistory;
+	} else if ($("#location-list").length > 0) {
+		update_function = updateLocationList;
 	} else if ($(".location-details").length > 0) {
-		setTimeout(updateCurrentConditions, 5000);
+		update_function = updateCurrentConditions;
 	}
+	setTimeout(update_function, 5000)
 });
 
-function make_updates(url, callback, last_entry) {
-	$.ajax({
-		url: url,
-		type: "GET",
-		data: { since: last_entry },
-		dataType: 'json',
-		success: callback
-	});
+function updateLocationList() {
+	var last_entry = $("#location-list").data("time");
+	var updateEntries = function(conditions) {
+		$.each(conditions, function(index, update) {
+			$("#location-list").data("time", update.timestamp+1)
+			//If the location exists
+			if($(".current-conditions[data-id=" + update.location_id + "]")){
+				updateConditions(update.location_id, update);
+			}
+		});
+	}
+	make_updates('conditions', updateEntries, last_entry);
+	setTimeout(updateLocationList, 5000);
 }
 
 function updateCurrentConditions() {
@@ -60,3 +69,13 @@ function conditions_cells(conditions) {
 	return content;
 }
 
+//makes AJAX call to given URL and runs callback on success
+function make_updates(url, callback, last_entry) {
+	$.ajax({
+		url: url,
+		type: "GET",
+		data: { since: last_entry },
+		dataType: 'json',
+		success: callback
+	});
+}
