@@ -21,16 +21,16 @@ function updateLocationList() {
 			}
 			//New location to add
 			else {
-				content = "<tr class='current-conditions' data-id=" + update.location_id + " data-time=" + update.timestamp + ">";
-				content += "<td class='location'> <a href='/locations/" + update.location_id + "'>" + update.location.name + "</a></td>";
-				conditions_cells(update);
-				content += "</tr>";
+				var new_row = "<tr class='current-conditions' data-id=" + update.location_id + " data-time=" + update.timestamp + ">";
+				new_row += "<td class='location'> <a href='/locations/" + update.location_id + "'>" + update.location.name + "</a></td>";
+				new_row += conditions_cells(update);
+				new_row += "</tr>";
 				var id_after = location_id_after(update.location.name);
 				if(id_after){
 					var element_after = $('.current-conditions[data-id=' + id_after + ']');
-					$(content).insertBefore(element_after).effect("highlight", {}, 2500);
+					$(new_row).insertBefore(element_after).effect("highlight", {}, 2500);
 				}else{
-					$(content).appendTo('#location-list').effect("highlight", {}, 2500);
+					$(new_row).appendTo('#location-list').effect("highlight", {}, 2500);
 				}
 			}
 		});
@@ -65,10 +65,10 @@ function updateConditionsHistory() {
 	var last_entry = $(".conditions:last-child").data("time")+1;		//add 1 to cover rounding 
 	var add_conditions = function(updates) {
 			$.each(updates, function(index, update){
-				content = "<tr class='conditions' data-time=" + update.timestamp + ">";
-				content += conditions_cells(update);
-				content += "</tr>";
-				$(content).appendTo('#conditions-list').effect("highlight", {}, 2500);
+				var new_stuff = "<tr class='conditions' data-time=" + update.timestamp + ">";
+				new_stuff += conditions_cells(update);
+				new_stuff += "</tr>";
+				$(new_stuff).appendTo('#conditions-list').effect("highlight", {}, 2500);
 			});
 		}
 	make_updates('history', add_conditions, last_entry)
