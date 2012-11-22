@@ -3,7 +3,7 @@
 <div class="location-info">
   <h1 class="heading">History of weather for <%= @location.name %> </h1>
   <% if @conditions_list %>
-  	<table id="conditions-list">
+  	<table id="conditions-list" data-id='<%= @location.id %>' data-time='<%= Time.now.to_i %>'>
   		<tr>
   			<th>Temp</th><th>Wind Speed</th><th>Wind Direction</th><th>Time</th>
   		</tr>

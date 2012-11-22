@@ -76,13 +76,14 @@ function updateCurrentConditions() {
 // Add new conditions to location conditions history 
 function updateConditionsHistory() {
 	//get the location we are viewing the history of
-	var location_id = $(".location").data("id");
+	var location_id = $("#conditions-list").data("id");
 	//get the last weather condition entered
-	var last_entry = $(".conditions:last-child").data("time")+1;		//add 1 to cover rounding 
+	var last_entry = $("#conditions-list").data("time")+1;		//add 1 to cover rounding 
 	//function to call for ajax response
 	var add_conditions = function(updates) {
 		//go through each new weather condition returned
 		$.each(updates, function(index, update){
+			$("#conditions-list").data("time", update.timestamp)
 			//build html for the new row to add
 			var new_stuff = "<tr class='conditions' data-time=" + update.timestamp + ">";
 			//add the conditions info as cells
