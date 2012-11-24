@@ -2,7 +2,7 @@ class Conditions < ActiveRecord::Base
   belongs_to :location
   attr_accessible :temp, :wind_direction, :wind_speed
 
-  validates :temp, :presence => true
+  validates_presence_of :temp
   validates :wind_speed, :numericality => { :greater_than_or_equal_to => 0 }
   validates :wind_direction, :format => { 
   	:with => /^[NS]?[NSWE]?$/i,
