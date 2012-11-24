@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Conditions do
 	let(:weather) {
-		Conditions.create(:temp => 75.5, :wind_speed => 12, :wind_direction => "NW")
+		Conditions.create(temp: 75.5, wind_speed: 12, wind_direction: "NW")
 	}
 	subject { weather }
 	it { should respond_to :location }
@@ -29,7 +29,7 @@ describe Conditions do
 		end
 	end
 
-	describe "normalizing" do
+	describe "#wind_direction" do
 		it "upcases wind direction" do
 			weather.wind_direction = "sw"
 			weather.wind_direction.should == "SW"
@@ -42,7 +42,7 @@ describe Conditions do
 				Conditions.updated_since(0).should == Conditions.all
 			end
 		end
-		context "since now" do
+		context "now" do
 			it "gives no conditions" do
 				Conditions.updated_since(Time.now.to_i+5).should be_empty
 			end
