@@ -8,7 +8,7 @@ class LocationsController < ApplicationController
     end
   end
 
-  # GET /locations/1
+  # GET /locations/San_Francisco
   def show
     @location = Location.find_by_name(params[:id].restore_spaces)
     @conditions = @location.current_conditions
@@ -18,7 +18,7 @@ class LocationsController < ApplicationController
     end
   end
 
-  # GET /locations/1/history
+  # GET /locations/San_Francisco/history
   def history
     @location = Location.find_by_name(params[:id].restore_spaces)
     if(params[:since])
@@ -41,7 +41,7 @@ class LocationsController < ApplicationController
     end
   end
 
-  # GET /locations/1/edit
+  # GET /locations/San_Francisco/edit
   def edit
     @location = Location.find_by_name(params[:id].restore_spaces)
   end
@@ -59,7 +59,7 @@ class LocationsController < ApplicationController
     end
   end
 
-  # PUT /locations/1
+  # PUT /locations/San_Francisco
   def update
     @location = Location.find_by_name(params[:id].restore_spaces)
 
@@ -72,7 +72,7 @@ class LocationsController < ApplicationController
     end
   end
 
-  # DELETE /locations/1
+  # DELETE /locations/San_Francisco
   def destroy
     @location = Location.find_by_name(params[:id].restore_spaces)
     @location.destroy
