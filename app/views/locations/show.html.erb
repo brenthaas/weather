@@ -6,7 +6,7 @@
   <% unless @conditions %>
 	<div id="no-info">No weather information available</p>
 	<% else %>
-  <div class="current-conditions" data-time="<%= @conditions.timestamp %>" data-id="<%= @location.id %>" >
+  <div class="current-conditions" data-time="<%= @conditions.timestamp %>" data-id="<%= @location.name.convert_spaces %>" >
 	  <p>Temperature: 
 	  	<span class="temp"><%= @conditions.temp %></span></p>
 	  <p>Wind Speed: 

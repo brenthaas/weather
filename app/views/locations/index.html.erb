@@ -5,7 +5,7 @@
 		<th>Location</th><th>Temp</th><th>Wind Speed</th><th>Wind Direction</th><th>Time</th>
 	</tr>
 <% @locations.each do |location| %>
-	<tr class="current-conditions" data-id="<%= location.id %>" data-time="<%= location.current_conditions.timestamp %>">
+	<tr class="current-conditions" data-id="<%= location.name.convert_spaces %>" data-time="<%= location.current_conditions.timestamp %>">
     <td class="location"><%= link_to location.name, location %></td>
     <%= render location.current_conditions if location.current_conditions %>
   </tr>
