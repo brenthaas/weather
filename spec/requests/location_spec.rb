@@ -3,7 +3,7 @@ require 'spec_helper'
 describe '/location/:id' do
   let(:location) { FactoryGirl.create(:location, :with_conditions) }
   let(:conditions) { FactoryGirl.create(:conditions) }
-  before { visit location_path(location.id) }
+  before { visit location_path(location) }
   subject {page.body}
 
   describe "displayed info" do
@@ -20,7 +20,7 @@ describe '/location/:id' do
   		should have_content(conditions.wind_direction)
   	end
   	it "has a link to history" do
-  		should have_link("History", :href => location_history_path(location))
+  		should have_link("History", :href => history_location_path(location))
   	end
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "GET location/:id/history" do
 	let(:location) { FactoryGirl.create(:location, :with_conditions) }
-	before { visit location_history_path(location.id) }
+	before { visit history_location_path(location) }
 
 	describe "conditions list" do
 		it "lists all weather conditions" do
