@@ -6,6 +6,10 @@ class Location < ActiveRecord::Base
   						format: { with: /\w+/ }
   default_scope order('name ASC')
 
+  def to_param
+    "#{name}".convert_spaces
+  end
+
   def current_conditions
   	@current ||= conditions.order('created_at').last
   end

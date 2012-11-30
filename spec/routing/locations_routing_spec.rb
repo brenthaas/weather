@@ -12,11 +12,15 @@ describe LocationsController do
     end
 
     it "routes to #show" do
-      get("/locations/1").should route_to("locations#show", :id => "1")
+      get("/locations/San_Francisco").should route_to("locations#show", :id => "San_Francisco")
+    end
+
+    it "routes to #history" do
+      get("/locations/San_Francisco/history").should route_to("locations#history", :id => "San_Francisco")
     end
 
     it "routes to #edit" do
-      get("/locations/1/edit").should route_to("locations#edit", :id => "1")
+      get("/locations/San_Francisco/edit").should route_to("locations#edit", :id => "San_Francisco")
     end
 
     it "routes to #create" do
@@ -24,11 +28,11 @@ describe LocationsController do
     end
 
     it "routes to #update" do
-      put("/locations/1").should route_to("locations#update", :id => "1")
+      put("/locations/San_Francisco").should route_to("locations#update", :id => "San_Francisco")
     end
 
     it "routes to #destroy" do
-      delete("/locations/1").should route_to("locations#destroy", :id => "1")
+      delete("/locations/San_Francisco").should route_to("locations#destroy", :id => "San_Francisco")
     end
 
   end

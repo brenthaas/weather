@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/1
   def show
-    @location = Location.find(params[:id])
+    @location = Location.find_by_name(params[:id].restore_spaces)
     @conditions = @location.current_conditions
 
     respond_to do |format|
@@ -20,7 +20,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/history
   def history
-    @location = Location.find(params[:id])
+    @location = Location.find_by_name(params[:id].restore_spaces)
     if(params[:since])
       @conditions_list = @location.conditions.where("created_at > ?", Time.at(params[:since].to_i))
     else
@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
-    @location = Location.find(params[:id])
+    @location = Location.find_by_name(params[:id].restore_spaces)
   end
 
   # POST /locations
@@ -61,7 +61,7 @@ class LocationsController < ApplicationController
 
   # PUT /locations/1
   def update
-    @location = Location.find(params[:id])
+    @location = Location.find_by_name(params[:id].restore_spaces)
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
@@ -74,7 +74,7 @@ class LocationsController < ApplicationController
 
   # DELETE /locations/1
   def destroy
-    @location = Location.find(params[:id])
+    @location = Location.find_by_name(params[:id].restore_spaces)
     @location.destroy
 
     respond_to do |format|
